@@ -1,14 +1,23 @@
+let balloons = []
+let osc
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  osc = new p5.Oscillator();
+  osc.setType('saw');
+  // osc.amp(0);
 }
 
 function draw() {
   background(0);
-  translate(width/2, height/2);
-  rotate(frameCount/10%TWO_PI)
-  circle(20, 0, 40);
+  for(let i=0; i<balloons.length; i++) {
+    balloons[i].tick();
+  }
 }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+function mousePressed() {
+  let b = new Balloon();
+  balloons.push(b);
+  // print(balloons);
 }
